@@ -636,9 +636,7 @@ class _FridgeCartViewState extends State<FridgeCartView> {
                   style: textStyleTheme.mediumW
               ),
               onPressed: () {
-                onPressPay();
-
-
+                onPressPay();  
               },
             ),
           ),
