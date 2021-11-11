@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "198783394631",
+    "project_id": "organic-delight-74a71",
+    "storage_bucket": "organic-delight-74a71.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198783394631:android:3f56d42ff4db038b95a262",
+        "android_client_info": {
+          "package_name": "com.criteriontech.organic_delight"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "198783394631-op70v3971fk2qoo4da6t0kmd226t90uq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2qeD3nltZXrljfUIJGoWsJpqaBCAn5GY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "198783394631-op70v3971fk2qoo4da6t0kmd226t90uq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

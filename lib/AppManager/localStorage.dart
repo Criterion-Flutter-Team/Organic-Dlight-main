@@ -1,0 +1,43 @@
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+
+
+
+class LocalStorage extends GetxController {
+  final localStorage = GetStorage();
+
+  List get getCartProducts => localStorage.read('cartProduct') ?? [];
+  List get getCartVarients => localStorage.read('cartVarients') ?? [];
+
+
+  String get getCartTotal => getCartProducts.isEmpty? 'NIL':getCartProducts[0]['cartTotal'].toString();
+  String get getTotalPrice => getCartProducts.isEmpty? 'NIL':getCartProducts[0]['totalMrp'].toString();
+  String get getCartTotalDiscount => getCartProducts.isEmpty? 'NIL':getCartProducts[0]['totalDiscount'].toString();
+  String get getTotalMrp => getCartProducts.isEmpty? 'NIL':(getCartProducts[0]['cartAfterDiscount']?? getCartTotal).toString();
+
+  String get getCouponCode => getCartProducts.isEmpty? '':(getCartProducts[0]['couponCode']?? '').toString();
+  String get getDiscount => getCartProducts.isEmpty? '':(getCartProducts[0]['maxDiscount']?? '').toString();
+
+
+  updateCartProducts(List val) {
+      localStorage.write('cartProduct', val);
+    updateVarients(val);
+  }
+
+  updateVarients(List val) {
+    List saveList=[];
+    for(int i=0; i<val.length; i++){
+      saveList.add(val[i]['productVarientId']);
+    }
+    localStorage.write('cartVarients', saveList);
+  }
+
+  removeProduct() async{
+    print('remoooooooove');
+   await localStorage.remove('cartProduct');
+    await localStorage.remove('cartVarients');
+    update();
+  }
+
+
+}
