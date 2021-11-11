@@ -626,7 +626,6 @@ class _FridgeCartViewState extends State<FridgeCartView> {
           Expanded(
             flex: 1,
             child: TextButton(
-
               style: TextButton.styleFrom(
                 padding: EdgeInsets.all(0),
                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
