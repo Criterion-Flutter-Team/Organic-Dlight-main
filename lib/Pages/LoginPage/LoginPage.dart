@@ -5,10 +5,14 @@ import 'package:organic_delight/AppManager/AlertDialogue.dart';
 import 'package:organic_delight/AppManager/MtTextTheme.dart';
 import 'package:organic_delight/AppManager/appColors.dart';
 import 'package:organic_delight/AppManager/appUtils.dart';
+import 'package:organic_delight/AppManager/webView.dart';
 import 'package:organic_delight/AppManager/widgets/textFeild.dart';
 import 'package:organic_delight/Pages/Cart/CartModal.dart';
 import 'package:organic_delight/Pages/LoginPage/LoginPageModal.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:get/get.dart';
+
+import 'login_page_controller.dart';
 
 
 
@@ -35,6 +39,8 @@ class _LoginPageState extends State<LoginPage> {
    TextEditingController  signUpEmailC=TextEditingController();
    TextEditingController  signUpPassC=TextEditingController();
      TextEditingController confirmUpPassC=TextEditingController();
+
+
 
    LoginPageModal modal=LoginPageModal();
    CartModal cartModal=CartModal();
@@ -461,136 +467,193 @@ print('forgotPassword');
    }
 
    signUpPart(){
-     return Column(
-       crossAxisAlignment: CrossAxisAlignment.start,
-       children: [
-
-         Text('Name *',
-           style:textStyleTheme.smallC
-         ),
-         SizedBox(height: 5,),
-         TextFieldClass(
-           controller: userNameC,
-           validator: (value){
-             if(value!.length==0)
-             {
-               return startValidation? 'Name must not be empty.': null;
-             }
-             else{
-               return null;
-             }
-           },
-           hintText: 'Enter Name (ex: abc)',
-         ),
-         SizedBox(height: 15,),
-         Text('Contact *',
-           style:textStyleTheme.smallC
-         ),
-         SizedBox(height: 5,),
-         TextFieldClass(
-           inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),],
-           maxLength: 10,
-           validator: (value){
-             if(value!.length==0)
-             {
-               return startValidation? 'Contact must not be empty.': null;
-             }
-             else if(value.length<10){
-               return startValidation? 'Please Enter full no.': null;
-             }
-             else{
-               return null;
-             }
-           },
-           controller: contactC,
-           keyboardType: TextInputType.number ,
-           hintText: 'Enter Contact (ex: 9999999999)',
-         ),
-         SizedBox(height: 15,),
-         Text('Email *',
-           style:textStyleTheme.smallC
-         ),
-         SizedBox(height: 5,),
-         TextFieldClass(
-           controller: signUpEmailC,
-           keyboardType: TextInputType.emailAddress,
-           validator:(value) {
-             Pattern pattern =
-                 r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-             RegExp regex = new RegExp(pattern.toString());
-             if(value!.length==0){
-               return startValidation? 'Email can not be empty':null;
-             }
-             else if (!regex.hasMatch(value))
-               return startValidation? 'Enter valid email':null;
-             else
-               return null;
-           },
-           hintText: 'Enter Name (ex: abc@gmail.com)',
-         ),
-         SizedBox(height: 15,),
-         Text('Password *',
-           style:textStyleTheme.smallC
-         ),
-         SizedBox(height: 5,),
-         TextFieldClass(
-           controller: signUpPassC,
-           validator: (value){
-             if(value!.length==0)
-             {
-               return startValidation? 'Password must not be empty.': null;
-             }
-             else{
-               return null;
-             }
-           },
-           hintText: 'Enter Password',
-           isPasswordField: true,
-         ),
-         SizedBox(height: 15,),
-         Text('Confirm Password *',
-           style: textStyleTheme.smallC
-         ),
-         SizedBox(height: 5,),
-         TextFieldClass(
-           controller: confirmUpPassC,
-           validator: (value){
-             if(value!.length==0)
-             {
-               return startValidation? 'Confirm Password must not be empty.': null;
-             }
-             else if(value.toString()!=signUpPassC.text){
-             return startValidation? 'Password does not match.': null;
-             }
-             else{
-               return null;
-             }
-           },
-           hintText: 'Confirm Password',
-           isPasswordField: true,
-         ),
-         SizedBox(height: 20,),
-         Row(
-           mainAxisAlignment: MainAxisAlignment.center,
+     return GetBuilder(
+       init:LoginPageController(),
+       builder: (_) {
+         return Column(
+           crossAxisAlignment: CrossAxisAlignment.start,
            children: [
 
-             TextButton(
-               style: TextButton.styleFrom(
-                   backgroundColor: AppColor.buttonColor,
-                   shape: AppWidgets.buttonShape,
-                   padding: EdgeInsets.symmetric(horizontal: 22,vertical: 5)
-               ),
-
-               onPressed: () {
-                 onPressedSignUp(true);
+             Text('Name *',
+               style:textStyleTheme.smallC
+             ),
+             SizedBox(height: 5,),
+             TextFieldClass(
+               controller: userNameC,
+               validator: (value){
+                 if(value!.length==0)
+                 {
+                   return startValidation? 'Name must not be empty.': null;
+                 }
+                 else{
+                   return null;
+                 }
                },
-               child:  Text('SignUp',
-                 style: textStyleTheme.mediumW),
+               hintText: 'Enter Name (ex: abc)',
+             ),
+             SizedBox(height: 15,),
+             Text('Contact *',
+               style:textStyleTheme.smallC
+             ),
+             SizedBox(height: 5,),
+             TextFieldClass(
+               inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),],
+               maxLength: 10,
+               validator: (value){
+                 if(value!.length==0)
+                 {
+                   return startValidation? 'Contact must not be empty.': null;
+                 }
+                 else if(value.length<10){
+                   return startValidation? 'Please Enter full no.': null;
+                 }
+                 else{
+                   return null;
+                 }
+               },
+               controller: contactC,
+               keyboardType: TextInputType.number ,
+               hintText: 'Enter Contact (ex: 9999999999)',
+             ),
+             SizedBox(height: 15,),
+             Text('Email *',
+               style:textStyleTheme.smallC
+             ),
+             SizedBox(height: 5,),
+             TextFieldClass(
+               controller: signUpEmailC,
+               keyboardType: TextInputType.emailAddress,
+               validator:(value) {
+                 Pattern pattern =
+                     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+                 RegExp regex = new RegExp(pattern.toString());
+                 if(value!.length==0){
+                   return startValidation? 'Email can not be empty':null;
+                 }
+                 else if (!regex.hasMatch(value))
+                   return startValidation? 'Enter valid email':null;
+                 else
+                   return null;
+               },
+               hintText: 'Enter Name (ex: abc@gmail.com)',
+             ),
+             SizedBox(height: 15,),
+             Text('Password *',
+               style:textStyleTheme.smallC
+             ),
+             SizedBox(height: 5,),
+             TextFieldClass(
+               controller: signUpPassC,
+               validator: (value){
+                 if(value!.length==0)
+                 {
+                   return startValidation? 'Password must not be empty.': null;
+                 }
+                 else{
+                   return null;
+                 }
+               },
+               hintText: 'Enter Password',
+               isPasswordField: true,
+             ),
+             SizedBox(height: 15,),
+             Text('Confirm Password *',
+               style: textStyleTheme.smallC
+             ),
+             SizedBox(height: 5,),
+             TextFieldClass(
+               controller: confirmUpPassC,
+               validator: (value){
+                 if(value!.length==0)
+                 {
+                   return startValidation? 'Confirm Password must not be empty.': null;
+                 }
+                 else if(value.toString()!=signUpPassC.text){
+                 return startValidation? 'Password does not match.': null;
+                 }
+                 else{
+                   return null;
+                 }
+               },
+               hintText: 'Confirm Password',
+               isPasswordField: true,
+             ),
+             Row(
+               children: [
+                 GestureDetector(
+                   onTap: ()   {
+
+                     if(modal.controller.getIsReadTerms==true){
+                       modal.controller
+                           .updateCheckBoxValue =
+                           modal.controller
+                               .getCheckBoxValue;
+                     }
+                     else
+                     {
+                       alertToast(context, 'Please First Read Terms and Conditions ');
+                     }
+                   },
+                   child: Padding(
+                     padding: const EdgeInsets.fromLTRB(18,5,8,5,),
+                     child: SizedBox(
+                       child:
+                       modal.controller.getCheckBoxValue?
+                       Icon(Icons.check_box,color: AppColor.black,)
+                           :Icon(Icons.check_box_outline_blank),
+                     ),
+                   ),
+                 ),
+                 Row(
+                   children: [
+                     Text(
+                       'I have read and agree to the',
+                       style: MyTextTheme().smallBCB,
+                     ),
+                     InkWell(
+                       onTap: (){
+                         modal.controller.updateIsReadTerms=true;
+                         App().navigate(context,  WebViewPage(title: 'Terms and Conditions',url:"https://theorganicdelight.com/UserView/TermsAndConditions" ,));
+
+                       },
+                       child: Padding(
+                         padding: const EdgeInsets.fromLTRB(3,5,5,5),
+                         child: Text(
+                           'Term & Conditions',
+
+                         ),
+                       ),
+                     ),
+                   ],
+                 )
+               ],
              ),
 
+             Row(
+               mainAxisAlignment: MainAxisAlignment.center,
+               children: [
+
+                 TextButton(
+                   style: TextButton.styleFrom(
+                       backgroundColor: AppColor.buttonColor,
+                       shape: AppWidgets.buttonShape,
+                       padding: EdgeInsets.symmetric(horizontal: 22,vertical: 5)
+                   ),
+
+                   onPressed: () {
+                     if(modal.controller.getCheckBoxValue) {
+                       onPressedSignUp(true);
+                     }
+                   },
+                   child:  Text('SignUp',
+                     style: textStyleTheme.mediumW),
+                 ),
+
+               ],
+             )
            ],
-         )
-       ],
+         );
+       }
      );
    }
 

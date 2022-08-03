@@ -14,14 +14,14 @@ import 'package:organic_delight/AppManager/userData.dart';
 
 
 // Live URL
-// String baseUrl='https://theorganicdelight.com:86/api/Organic/';
-// String imageUrl='https://theorganicdelight.com/ProductImages/';
-// String fridgeImageUrl='https://theorganicdelight.com/FridgeProductImages/';
+String baseUrl='https://theorganicdelight.com:86/api/Organic/';
+String imageUrl='https://theorganicdelight.com/ProductImages/';
+String fridgeImageUrl='https://theorganicdelight.com/FridgeProductImages/';
 
 // Local URL
-String baseUrl='http://182.156.200.178:147/api/Organic/';
-String imageUrl='http://182.156.200.178:140/ProductImages/';
-String fridgeImageUrl='http://182.156.200.178:140/FridgeProductImages/';
+// String baseUrl='http://182.156.200.178:147/api/Organic/';
+// String imageUrl='http://182.156.200.178:140/ProductImages/';
+// String fridgeImageUrl='http://182.156.200.178:140/FridgeProductImages/';
 
 String secretMapKey='AIzaSyB0AW2vBqSKJPqegh75EhUUxPljXPhaxqU';
 

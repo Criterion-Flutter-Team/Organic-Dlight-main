@@ -8,12 +8,16 @@ import 'package:organic_delight/AppManager/userData.dart';
 import 'package:get/get.dart';
 import 'package:organic_delight/Pages/Dashboard/DashboardTabBarContrller.dart';
 
+import 'login_page_controller.dart';
+
 
 class LoginPageModal {
 
   UserData user = UserData();
   App app = App();
   DashboardTabBarController tabCont=Get.put(DashboardTabBarController());
+  LoginPageController controller=Get.put(LoginPageController());
+
 
 
 
