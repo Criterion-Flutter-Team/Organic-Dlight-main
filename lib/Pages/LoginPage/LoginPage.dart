@@ -644,6 +644,10 @@ print('forgotPassword');
                      if(modal.controller.getCheckBoxValue) {
                        onPressedSignUp(true);
                      }
+                     else
+                     {
+                       alertToast(context, 'Please First Read Terms and Conditions ');
+                     }
                    },
                    child:  Text('SignUp',
                      style: textStyleTheme.mediumW),
